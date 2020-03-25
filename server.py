@@ -1,5 +1,5 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
-from urllib import parse, request
+import urllib
 import json
 
 
@@ -16,8 +16,8 @@ class GetHandler(BaseHTTPRequestHandler):
             data = get_json_from_cbr()
             result = {'Valute':data['CharCode'],
                       'Value':int(params['usd']),
-                      'Result':int(params['usd']) * data['Value'] }
-            self.wfile.write(bytes(json.dumps({'data': result}),'utf-8'))
+                      'Result': int(params['usd']) * data['Value'] }
+            self.wfile.write(json.dumps({'data': result})).encode()
 
         else:
             self.send_response(404)
