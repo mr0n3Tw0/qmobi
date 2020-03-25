@@ -16,7 +16,7 @@ class GetHandler(BaseHTTPRequestHandler):
             data = get_json_from_cbr()
             result = {'Valute':data['CharCode'],
                       'Value':int(params['usd']),
-                      'Result': int(params['usd']) * data['Value'] }
+                      'Result':int(params['usd']) * data['Value'] }
             self.wfile.write(bytes(json.dumps({'data': result}),'utf-8'))
 
         else:
