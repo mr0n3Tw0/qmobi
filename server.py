@@ -1,5 +1,5 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
-import urllib
+from urllib import parse, error, request
 import json
 
 
@@ -17,7 +17,7 @@ class GetHandler(BaseHTTPRequestHandler):
             result = {'Valute':data['CharCode'],
                       'Value':int(params['usd']),
                       'Result': int(params['usd']) * data['Value'] }
-            self.wfile.write(json.dumps({'data': result})).encode()
+            self.wfile.write(json.dumps({'data': result}).encode())
 
         else:
             self.send_response(404)
