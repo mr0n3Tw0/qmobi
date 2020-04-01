@@ -26,7 +26,7 @@ class GetHandler(BaseHTTPRequestHandler):
 def get_json_from_cbr():
     try:
         url = request.urlopen('https://www.cbr-xml-daily.ru/daily_json.js').read()
-    except urllib.error.URLError:
+    except error.URLError:
         print("\nService is unavailable")
     else:
         file = (url.decode('utf-8'))
